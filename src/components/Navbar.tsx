@@ -3,12 +3,13 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 
 const navLinks = [
   { href: "/services", label: "Services" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
+  { href: "/security", label: "Security" },
+  { href: "/about",    label: "About" },
+  { href: "/contact",  label: "Contact" },
 ];
 
 export default function Navbar() {
@@ -23,91 +24,90 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-white/90 backdrop-blur-xl border-b border-black/8 shadow-sm"
-          : "bg-white/70 backdrop-blur-md"
-      }`}
-    >
-      <nav className="max-w-6xl mx-auto px-6 lg:px-8 h-14 flex items-center justify-between">
-        {/* Logo */}
-        <Link
-          href="/"
-          className="text-[15px] font-semibold tracking-tight text-[#1d1d1f] hover:opacity-70 transition-opacity"
-        >
-          Orkka Solutions
-        </Link>
+    <header className="fixed top-0 left-0 right-0 z-50">
+      <nav
+        className={`transition-all duration-300 ${
+          scrolled
+            ? "bg-white/90 backdrop-blur-xl border-b border-gray-200"
+            : "bg-transparent"
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 h-16 flex items-center justify-between">
+          {/* Logo — minimalist wordmark with accent dot */}
+          <Link
+            href="/"
+            className="flex items-center gap-3 hover:opacity-80 transition-opacity"
+          >
+            <span className="inline-block w-1.5 h-1.5 bg-[#0891B2]" />
+            <span className="text-[15px] font-bold tracking-[0.25em] text-ink font-heading">
+              ORKKA
+            </span>
+          </Link>
 
-        {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-8">
+          {/* Desktop nav */}
+          <div className="hidden md:flex items-center gap-10">
+            <div className="flex items-center gap-8">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`text-[13px] font-medium tracking-wide transition-colors ${
+                    pathname === link.href
+                      ? "text-[#0891B2]"
+                      : "text-ink/70 hover:text-ink"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+            <Link
+              href="/contact"
+              className="btn-primary inline-flex items-center gap-2 px-5 py-2.5 text-[13px] font-medium group"
+            >
+              Get Started
+              <ArrowRight
+                size={13}
+                className="group-hover:translate-x-0.5 transition-transform"
+              />
+            </Link>
+          </div>
+
+          {/* Mobile */}
+          <button
+            className="md:hidden text-ink/60 hover:text-ink transition-colors"
+            onClick={() => setOpen(!open)}
+            aria-label="Toggle menu"
+          >
+            {open ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
+      </nav>
+
+      {/* Mobile drawer */}
+      {open && (
+        <div className="md:hidden bg-white border-t border-gray-200 px-6 py-5 flex flex-col gap-1">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`text-[13px] font-medium transition-opacity ${
+              onClick={() => setOpen(false)}
+              className={`text-[14px] font-medium py-3 border-b border-gray-100 last:border-0 transition-colors ${
                 pathname === link.href
-                  ? "text-[#1d1d1f] opacity-100"
-                  : "text-[#1d1d1f] opacity-60 hover:opacity-100"
+                  ? "text-[#0891B2]"
+                  : "text-ink/80 hover:text-ink"
               }`}
             >
               {link.label}
             </Link>
           ))}
-          <div className="w-px h-4 bg-black/15" />
-          <Link
-            href="/contact?type=candidate"
-            className="text-[13px] font-medium text-[#1d1d1f] opacity-60 hover:opacity-100 transition-opacity"
-          >
-            For Candidates
-          </Link>
           <Link
             href="/contact"
-            className="px-4 py-1.5 rounded-full bg-[#1d1d1f] text-white text-[13px] font-medium hover:bg-[#3d3d3f] transition-colors"
-          >
-            Hire Talent
-          </Link>
-        </div>
-
-        {/* Mobile */}
-        <button
-          className="md:hidden text-[#1d1d1f] opacity-60 hover:opacity-100 transition-opacity"
-          onClick={() => setOpen(!open)}
-          aria-label="Toggle menu"
-        >
-          {open ? <X size={20} /> : <Menu size={20} />}
-        </button>
-      </nav>
-
-      {/* Mobile drawer */}
-      {open && (
-        <div className="md:hidden bg-white/95 backdrop-blur-xl border-t border-black/8 px-6 py-5 flex flex-col gap-1">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setOpen(false)}
-              className="text-[15px] font-medium text-[#1d1d1f] py-2.5 border-b border-black/6 last:border-0 opacity-80 hover:opacity-100 transition-opacity"
-            >
-              {link.label}
-            </Link>
-          ))}
-          <Link
-            href="/contact?type=candidate"
             onClick={() => setOpen(false)}
-            className="text-[15px] font-medium text-[#1d1d1f] py-2.5 border-b border-black/6 opacity-80 hover:opacity-100 transition-opacity"
+            className="btn-primary px-5 py-3 text-[14px] font-medium text-center mt-4"
           >
-            For Candidates
+            Get Started
           </Link>
-          <div className="flex flex-col gap-3 mt-3">
-            <Link
-              href="/contact"
-              onClick={() => setOpen(false)}
-              className="px-4 py-2.5 rounded-full bg-[#1d1d1f] text-white text-[14px] font-medium text-center hover:bg-[#3d3d3f] transition-colors"
-            >
-              Hire Talent
-            </Link>
-          </div>
         </div>
       )}
     </header>

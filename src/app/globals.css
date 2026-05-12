@@ -1,21 +1,259 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap');
 @import "tailwindcss";
 
-html {
-  scroll-behavior: smooth;
+/* =========================================================
+   ORKKA DESIGN SYSTEM
+   Santifer-inspired: minimal, premium, AI-modern
+   Primary accent: Deep Cyan (#0891B2)
+   Secondary: Electric Emerald (#059669)
+   ========================================================= */
+
+:root {
+  /* Backgrounds */
+  --bg: #ffffff;
+  --bg-warm: #fafaf9;
+  --bg-subtle: #f9fafb;
+  --bg-hover: #f3f4f6;
+
+  /* Text */
+  --ink: #0a0a0a;
+  --ink-soft: #171717;
+  --muted: #6b7280;
+  --subtle: #9ca3af;
+
+  /* Borders */
+  --border: #e5e7eb;
+  --divider: #f3f4f6;
+
+  /* Primary accent — deep cyan */
+  --accent: #0891b2;
+  --accent-dark: #0e7490;
+  --accent-soft: #cffafe;
+  --accent-tint: #f0f9ff;
+
+  /* Secondary accent — electric emerald (for NEW / positive) */
+  --emerald: #059669;
+  --emerald-soft: #d1fae5;
+  --emerald-tint: #ecfdf5;
+
+  /* Functional */
+  --warn: #c2410c;
+  --warn-soft: #fed7aa;
+  --warn-tint: #fff7ed;
+
+  /* Dark sections (cover, footer, closing) */
+  --dark-bg: #0a0a0a;
+  --dark-card: #161616;
+  --dark-line: #262626;
 }
 
+html { scroll-behavior: smooth; }
 body {
-  background: #ffffff;
-  color: #1d1d1f;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "ss01", "cv11";
+}
+::selection { background: var(--accent); color: #ffffff; }
+::-webkit-scrollbar { width: 0px; }
+
+.font-heading { font-family: 'Inter', sans-serif; letter-spacing: -0.02em; }
+.font-serif   { font-family: 'Instrument Serif', serif; letter-spacing: -0.01em; }
+.font-body    { font-family: 'Inter', sans-serif; }
+
+/* =========================================================
+   BACKGROUNDS
+   ========================================================= */
+
+/* Premium dark backdrop — only for hero + closing sections */
+.bg-dark {
+  background:
+    radial-gradient(ellipse at 20% 20%, #1a1a1a 0%, #0a0a0a 60%, #050505 100%),
+    linear-gradient(to top right, rgba(8, 145, 178, 0) 0%, rgba(8, 145, 178, 0.04) 70%, rgba(5, 150, 105, 0.06) 100%);
 }
 
-::selection {
-  background: #1d1d1f;
+/* Subtle warm off-white for alternate sections */
+.bg-warm {
+  background: linear-gradient(180deg, #ffffff 0%, #fafaf9 100%);
+}
+
+/* Hero accent orb — decorative */
+.bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(5, 150, 105, 0.35) 0%, rgba(8, 145, 178, 0.2) 50%, transparent 100%);
+}
+
+/* =========================================================
+   TEXT TREATMENTS
+   ========================================================= */
+
+.text-accent { color: var(--accent); }
+.text-emerald { color: var(--emerald); }
+.text-muted { color: var(--muted); }
+.text-ink { color: var(--ink); }
+
+/* Signature gradient for emphasis (sparingly) */
+.text-gradient-accent {
+  background: linear-gradient(135deg, #0891b2, #059669);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-gradient-subtle {
+  background: linear-gradient(135deg, #0a0a0a 0%, #525252 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* =========================================================
+   COMPONENTS
+   ========================================================= */
+
+/* Accent dot — eyebrow marker */
+.eyebrow-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+/* Minimal card */
+.card-minimal {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.card-minimal:hover {
+  border-color: var(--ink);
+  transform: translateY(-2px);
+}
+
+/* Accent card (popular/featured) */
+.card-accent {
+  background: var(--accent-tint);
+  border: 1.5px solid var(--accent);
+}
+
+/* Primary button — dark fill */
+.btn-primary {
+  background: var(--ink);
   color: #ffffff;
+  transition: background 0.2s ease;
+}
+.btn-primary:hover { background: var(--accent); }
+
+/* Outline button */
+.btn-outline {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--border);
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+.btn-outline:hover { border-color: var(--ink); }
+
+/* Accent button */
+.btn-accent {
+  background: var(--accent);
+  color: #ffffff;
+  transition: background 0.2s ease;
+}
+.btn-accent:hover { background: var(--accent-dark); }
+
+/* Dark-mode buttons (for dark bg hero) */
+.btn-white-dark {
+  background: #ffffff;
+  color: var(--ink);
+  transition: background 0.2s ease;
+}
+.btn-white-dark:hover { background: var(--accent-tint); }
+
+.btn-ghost-dark {
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.btn-ghost-dark:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.05);
 }
 
-::-webkit-scrollbar {
-  width: 0px;
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; filter: drop-shadow(0 0 4px currentColor); }
+  50% { opacity: 1; filter: drop-shadow(0 0 12px currentColor); }
+}
+@keyframes dash-flow {
+  to { stroke-dashoffset: -20; }
+}
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes orbit {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@keyframes breathe {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.05); opacity: 0.5; }
+}
+
+.animate-float       { animation: float 5s ease-in-out infinite; }
+.animate-pulse-soft  { animation: pulse-soft 3s ease-in-out infinite; }
+.animate-pulse-glow  { animation: pulse-glow 2.5s ease-in-out infinite; }
+.animate-dash-flow   { animation: dash-flow 2.5s linear infinite; }
+.animate-fade-in-up  { animation: fade-in-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.animate-fade-in     { animation: fade-in 1s ease-out forwards; }
+.animate-marquee     { animation: marquee 40s linear infinite; }
+.animate-orbit       { animation: orbit 30s linear infinite; }
+.animate-breathe     { animation: breathe 6s ease-in-out infinite; }
+
+/* =========================================================
+   GRID/DOT PATTERNS (premium backdrop)
+   ========================================================= */
+
+.bg-dot-pattern {
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.bg-dot-pattern-dark {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.bg-grid-pattern {
+  background-image:
+    linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
 }
