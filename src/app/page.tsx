@@ -1,253 +1,428 @@
 import Link from "next/link";
-import { ArrowRight, ChevronRight } from "lucide-react";
+import { ArrowRight, Shield, Cloud, Users, Check, Minus } from "lucide-react";
 
-const clientPractices = [
-  "AI / ML Engineering",
-  "Generative AI & LLMs",
-  "Data Platforms",
-  "Cloud & Platform Engineering",
-  "Cybersecurity",
-  "Software Engineering",
-  "SAP & Enterprise",
-  "And every domain in between",
-];
+/* ------------------------------------------------------------------ */
+/*  HERO VISUAL — minimal, premium, santifer-inspired                  */
+/* ------------------------------------------------------------------ */
 
-const promise = [
+function HeroVisual() {
+  return (
+    <div className="relative w-full h-full flex items-center justify-center">
+      {/* Ambient duotone orb */}
+      <div
+        className="absolute -right-20 -top-10 w-[420px] h-[420px] rounded-full opacity-40 blur-3xl animate-breathe"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(5, 150, 105, 0.5) 0%, rgba(8, 145, 178, 0.3) 50%, transparent 100%)",
+        }}
+      />
+
+      {/* Clean geometric SVG composition */}
+      <svg
+        viewBox="0 0 420 420"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-full h-full max-w-[460px] relative z-10"
+      >
+        <defs>
+          <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#0891B2" />
+            <stop offset="100%" stopColor="#059669" />
+          </linearGradient>
+        </defs>
+
+        {/* Outer ring */}
+        <circle cx="210" cy="210" r="180" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
+        <circle cx="210" cy="210" r="140" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
+
+        {/* Animated dotted orbit */}
+        <circle
+          cx="210"
+          cy="210"
+          r="180"
+          stroke="url(#accentGrad)"
+          strokeWidth="1"
+          strokeDasharray="2 6"
+          opacity="0.5"
+          className="animate-orbit"
+          style={{ transformOrigin: "210px 210px" }}
+        />
+
+        {/* Center stack — layered security icon */}
+        <g>
+          {/* Layer 1 (bottom) */}
+          <rect x="140" y="250" width="140" height="16" rx="2" fill="rgba(255,255,255,0.06)" />
+          <rect x="140" y="230" width="140" height="16" rx="2" fill="rgba(255,255,255,0.08)" />
+          <rect x="140" y="210" width="140" height="16" rx="2" fill="rgba(8,145,178,0.25)" />
+          <rect x="140" y="190" width="140" height="16" rx="2" fill="rgba(8,145,178,0.35)" />
+          <rect x="140" y="170" width="140" height="16" rx="2" fill="rgba(5,150,105,0.4)" />
+
+          {/* Top glowing shield */}
+          <path
+            d="M210 120 L250 135 L250 165 Q250 185 210 195 Q170 185 170 165 L170 135 Z"
+            fill="none"
+            stroke="url(#accentGrad)"
+            strokeWidth="1.5"
+            className="animate-pulse-glow"
+          />
+        </g>
+
+        {/* Corner indicators */}
+        <circle cx="60" cy="60" r="3" fill="#0891B2" className="animate-pulse-soft" />
+        <circle cx="360" cy="60" r="3" fill="#059669" className="animate-pulse-soft" style={{ animationDelay: "0.5s" }} />
+        <circle cx="60" cy="360" r="3" fill="#059669" className="animate-pulse-soft" style={{ animationDelay: "1s" }} />
+        <circle cx="360" cy="360" r="3" fill="#0891B2" className="animate-pulse-soft" style={{ animationDelay: "1.5s" }} />
+
+        {/* Thin connection lines */}
+        <line x1="60" y1="60" x2="210" y2="130" stroke="rgba(255,255,255,0.08)" strokeWidth="0.5" strokeDasharray="2 4" className="animate-dash-flow" />
+        <line x1="360" y1="60" x2="210" y2="130" stroke="rgba(255,255,255,0.08)" strokeWidth="0.5" strokeDasharray="2 4" className="animate-dash-flow" style={{ animationDelay: "0.5s" }} />
+        <line x1="60" y1="360" x2="210" y2="290" stroke="rgba(255,255,255,0.08)" strokeWidth="0.5" strokeDasharray="2 4" className="animate-dash-flow" style={{ animationDelay: "1s" }} />
+        <line x1="360" y1="360" x2="210" y2="290" stroke="rgba(255,255,255,0.08)" strokeWidth="0.5" strokeDasharray="2 4" className="animate-dash-flow" style={{ animationDelay: "1.5s" }} />
+      </svg>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  DATA                                                                */
+/* ------------------------------------------------------------------ */
+
+const pillars = [
   {
+    icon: Shield,
     number: "01",
-    title: "Depth over volume",
+    title: "AI Security & Governance",
     description:
-      "Every candidate we present is technically evaluated by engineers who have worked in the same domains. You receive a precise shortlist — never a resume pile.",
+      "End-to-end security for AI-era enterprises. From cloud posture to AI governance frameworks — NIST AI RMF, EU AI Act, ISO 42001.",
+    items: ["Cloud Security & CSPM", "SOC Operations & SIEM/SOAR", "IAM & Zero Trust", "AI Governance & Model Security", "Compliance Automation"],
   },
   {
+    icon: Cloud,
     number: "02",
-    title: "We speak the language",
+    title: "Cloud Infrastructure & Platform",
     description:
-      "Our team has shipped production AI/ML systems at scale. We understand the nuance of the roles you are hiring for — and we find people who do too.",
+      "Production-grade infrastructure built for scale. Kubernetes-native CI/CD, GitOps workflows, multi-cloud architectures.",
+    items: ["Multi-Cloud Kubernetes", "GitOps & CI/CD Automation", "Platform Engineering", "GPU Infrastructure for AI/ML", "Observability & SRE"],
   },
   {
+    icon: Users,
     number: "03",
-    title: "Global reach, direct accountability",
+    title: "Technology Staffing",
     description:
-      "With operations across the US and India, we access a deep global talent network while delivering with the responsiveness of a dedicated partner.",
-  },
-  {
-    number: "04",
-    title: "Retention is our metric",
-    description:
-      "We measure success by how well placements perform — six months and beyond. Long-term fit matters more to us than throughput.",
+      "Pre-vetted senior engineers. Contract, contract-to-hire, direct hire, or statement of work — matched to your exact needs.",
+    items: ["Contract (3–12 months)", "Contract-to-Hire", "Direct Hire", "Statement of Work", "Fractional Leadership"],
   },
 ];
 
-const engagements = [
-  "Contract",
-  "Contract-to-Hire",
-  "Direct Hire",
-  "Employer of Record",
-  "Statement of Work",
-  "Offshore Staffing",
+const differentiators = [
+  {
+    title: "Specialist, not generalist.",
+    description:
+      "We focus exclusively on AI security, cloud infrastructure, and platform engineering for regulated industries. No scope creep.",
+  },
+  {
+    title: "Senior delivery, always.",
+    description:
+      "Every engagement is delivered by senior architects — not junior consultants learning on your budget.",
+  },
+  {
+    title: "AI governance is a first-class citizen.",
+    description:
+      "While others treat AI as an afterthought, we build governance in from day one — NIST AI RMF, EU AI Act, ISO 42001.",
+  },
+  {
+    title: "Mid-market pricing, enterprise quality.",
+    description:
+      "30–40% of a full-time senior hire. No Big 4 overhead. Same specialist expertise.",
+  },
 ];
+
+const engagementModels = [
+  { title: "Contract",         desc: "3–12 month engagements. Fast start, project-based." },
+  { title: "Contract-to-Hire", desc: "Evaluate on the job. Convert when ready." },
+  { title: "Direct Hire",      desc: "Full-time placement. End-to-end delivery." },
+  { title: "Statement of Work",desc: "Outcome-based. We own the deliverables." },
+];
+
+const stats = [
+  { value: "7",  label: "Security layers covered" },
+  { value: "50+",label: "AWS services managed" },
+  { value: "4",  label: "Compliance frameworks" },
+  { value: "40%",label: "Cost vs full-time hire" },
+];
+
+/* ------------------------------------------------------------------ */
+/*  PAGE                                                                */
+/* ------------------------------------------------------------------ */
 
 export default function HomePage() {
   return (
     <>
-      {/* Hero — minimal top */}
-      <section className="pt-32 pb-16 bg-white">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8 text-center">
-          <p className="text-[13px] font-medium text-[#6e6e73] uppercase tracking-widest mb-5">
-            Technology Staffing & AI Infrastructure Consulting
-          </p>
-          <h1 className="text-[44px] sm:text-[58px] lg:text-[68px] font-semibold leading-[1.06] tracking-tight text-[#1d1d1f] mb-6 max-w-4xl mx-auto">
-            Exceptional technology talent, precisely placed.
-          </h1>
-          <p className="text-[18px] text-[#6e6e73] leading-relaxed max-w-2xl mx-auto font-light">
-            Orkka Solutions connects companies with senior technology professionals across every domain — and delivers hands-on AI/ML infrastructure consulting for teams that demand more.
-          </p>
-        </div>
-      </section>
+      {/* ============================================================
+          HERO — dark, premium, minimal
+          ============================================================ */}
+      <section className="bg-dark relative overflow-hidden">
+        {/* Ambient orbs */}
+        <div className="bg-orb -top-32 -left-32 w-[500px] h-[500px]" />
+        <div className="bg-orb -bottom-40 -right-40 w-[600px] h-[600px]" />
 
-      {/* Primary split — For Companies / For Professionals */}
-      <section className="bg-white pb-8 px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-
-            {/* For Companies */}
-            <div className="bg-[#1d1d1f] rounded-3xl p-10 lg:p-14 flex flex-col min-h-[480px]">
-              <div className="flex-1">
-                <p className="text-[11px] font-semibold text-white/40 uppercase tracking-widest mb-6">
-                  For Companies
-                </p>
-                <h2 className="text-[32px] sm:text-[38px] font-semibold text-white leading-tight tracking-tight mb-5">
-                  Find the engineers
-                  <br />your hardest roles
-                  <br />demand.
-                </h2>
-                <p className="text-[15px] text-white/60 leading-relaxed mb-8 max-w-sm">
-                  We source and vet senior specialists across AI/ML, data, cloud, security, SAP, software engineering, and beyond. Precise matches — not resume volume.
-                </p>
-                <ul className="space-y-2 mb-10">
-                  {clientPractices.slice(0, 6).map((p) => (
-                    <li key={p} className="flex items-center gap-2.5">
-                      <span className="w-1 h-1 rounded-full bg-white/30 flex-shrink-0" />
-                      <span className="text-[13px] text-white/50">{p}</span>
-                    </li>
-                  ))}
-                </ul>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-28 pb-24 md:pt-36 md:pb-32 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            {/* Left copy */}
+            <div className="lg:col-span-7 animate-fade-in-up">
+              {/* Eyebrow */}
+              <div className="flex items-center gap-2 mb-8">
+                <span className="inline-block w-1.5 h-1.5 bg-[#0891B2]" />
+                <span className="text-[11px] font-semibold text-white/60 tracking-[0.25em] uppercase">
+                  AI Security Practice
+                </span>
               </div>
+
+              {/* Headline */}
+              <h1 className="font-heading text-[44px] sm:text-[56px] lg:text-[64px] font-bold leading-[1.05] tracking-tight text-white mb-6">
+                Secure AI deployment
+                <br />
+                <span className="text-gradient-accent">for regulated industries.</span>
+              </h1>
+
+              {/* Subhead */}
+              <p className="text-[17px] text-white/50 leading-relaxed max-w-xl font-light mb-10">
+                Orkka is the specialist AI security and platform engineering practice for healthcare, finance, and government organizations. We protect, build, and staff the systems that matter — without the Big 4 price tag.
+              </p>
+
+              {/* Industry tags */}
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-10 text-[13px] text-white/40 tracking-wider">
+                <span>Healthcare</span>
+                <span className="w-1 h-1 bg-white/20 rounded-full" />
+                <span>Finance</span>
+                <span className="w-1 h-1 bg-white/20 rounded-full" />
+                <span>Government</span>
+                <span className="w-1 h-1 bg-white/20 rounded-full" />
+                <span>Enterprise SaaS</span>
+              </div>
+
+              {/* CTAs */}
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-white text-[#1d1d1f] text-[14px] font-medium hover:bg-white/90 transition-colors group"
+                  className="btn-white-dark inline-flex items-center justify-center gap-2 px-7 py-4 text-[14px] font-medium group"
                 >
-                  Hire Talent
+                  Book a discovery call
                   <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
                 </Link>
                 <Link
                   href="/services"
-                  className="inline-flex items-center justify-center px-6 py-3 rounded-full border border-white/20 text-white text-[14px] font-medium hover:border-white/40 transition-all"
+                  className="btn-ghost-dark inline-flex items-center justify-center px-7 py-4 text-[14px] font-medium"
                 >
-                  Our Services
+                  Explore services
                 </Link>
               </div>
             </div>
 
-            {/* For Professionals */}
-            <div className="bg-[#f5f5f7] rounded-3xl p-10 lg:p-14 flex flex-col min-h-[480px]">
-              <div className="flex-1">
-                <p className="text-[11px] font-semibold text-[#6e6e73] uppercase tracking-widest mb-6">
-                  For Professionals
-                </p>
-                <h2 className="text-[32px] sm:text-[38px] font-semibold text-[#1d1d1f] leading-tight tracking-tight mb-5">
-                  Roles at companies
-                  <br />building what
-                  <br />comes next.
-                </h2>
-                <p className="text-[15px] text-[#6e6e73] leading-relaxed mb-8 max-w-sm">
-                  We represent senior technology professionals — connecting them with companies that value expertise and offer work worth doing. Contract, direct hire, and beyond.
-                </p>
-                <div className="flex flex-wrap gap-2 mb-10">
-                  {[
-                    "ML Engineers",
-                    "Platform Engineers",
-                    "Data Engineers",
-                    "Security Architects",
-                    "SAP Consultants",
-                    "Full-Stack Engineers",
-                    "DevOps Engineers",
-                    "GenAI Specialists",
-                  ].map((role) => (
-                    <span
-                      key={role}
-                      className="text-[12px] text-[#1d1d1f] border border-black/12 rounded-full px-3 py-1"
-                    >
-                      {role}
-                    </span>
-                  ))}
+            {/* Right visual */}
+            <div className="lg:col-span-5 flex items-center justify-center animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
+              <HeroVisual />
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom separator */}
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-white/5" />
+      </section>
+
+      {/* ============================================================
+          STAT STRIP — minimal, typographic
+          ============================================================ */}
+      <section className="bg-white border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {stats.map((s, i) => (
+              <div key={i} className="flex flex-col">
+                <div className="flex items-baseline gap-3 mb-2">
+                  <span className="w-1 h-1 bg-[#0891B2] rounded-full" />
+                  <div className="text-[48px] md:text-[56px] font-bold tracking-tight text-ink leading-none">
+                    {s.value}
+                  </div>
                 </div>
+                <div className="text-[12px] text-muted leading-relaxed pl-4">{s.label}</div>
               </div>
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Link
-                  href="/contact?type=candidate"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#1d1d1f] text-white text-[14px] font-medium hover:bg-[#3d3d3f] transition-colors group"
-                >
-                  Find a Role
-                  <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
-                </Link>
-              </div>
-            </div>
-
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Engagement models strip */}
-      <section className="bg-white py-12 border-b border-black/8">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-10">
-            <p className="text-[12px] font-semibold text-[#6e6e73] uppercase tracking-widest whitespace-nowrap">
-              Engagement Models
-            </p>
-            <div className="flex flex-wrap gap-2.5">
-              {engagements.map((e) => (
-                <span
-                  key={e}
-                  className="text-[13px] text-[#1d1d1f] border border-black/12 rounded-full px-4 py-1.5"
-                >
-                  {e}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* AI Infra consulting */}
+      {/* ============================================================
+          THREE PILLARS — card layout with accent numbers
+          ============================================================ */}
       <section className="bg-white py-24 md:py-32">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start">
-            <div>
-              <p className="text-[13px] font-medium text-[#6e6e73] uppercase tracking-widest mb-5">
-                Where We Go Deeper
-              </p>
-              <h2 className="text-[32px] sm:text-[42px] font-semibold tracking-tight text-[#1d1d1f] leading-tight mb-6">
-                AI/ML infrastructure is not just a practice area. It is what we have built.
-              </h2>
-              <p className="text-[15px] text-[#6e6e73] leading-relaxed mb-5">
-                For teams that need more than talent placement — we deliver direct consulting in AI/ML infrastructure, platform engineering, and cloud-native architecture. Led by engineers who have operated these systems in production, at scale.
-              </p>
-              <p className="text-[15px] text-[#6e6e73] leading-relaxed mb-8">
-                Kubernetes-native model serving. GPU orchestration. End-to-end MLOps. We have built it — and we can build it for you.
-              </p>
-              <Link
-                href="/services"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#1d1d1f] text-white text-[14px] font-medium hover:bg-[#3d3d3f] transition-colors group"
-              >
-                View consulting services
-                <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
-              </Link>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          {/* Section header */}
+          <div className="max-w-2xl mb-16">
+            <div className="flex items-center gap-2 mb-5">
+              <span className="inline-block w-1.5 h-1.5 bg-[#0891B2]" />
+              <span className="text-[11px] font-semibold text-ink tracking-[0.25em] uppercase">
+                Services
+              </span>
+            </div>
+            <h2 className="font-heading text-[36px] sm:text-[44px] font-bold tracking-tight text-ink leading-tight mb-4">
+              One partner.
+              <br />
+              <span className="text-muted">Three disciplines.</span>
+            </h2>
+            <p className="text-[16px] text-muted font-light leading-relaxed">
+              From protecting AI systems to building production infrastructure and staffing engineering teams — we cover the full lifecycle.
+            </p>
+          </div>
+
+          {/* Pillar cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {pillars.map((p, i) => {
+              const Icon = p.icon;
+              return (
+                <div
+                  key={i}
+                  className="card-minimal p-8 lg:p-10 flex flex-col group"
+                >
+                  <div className="flex items-start justify-between mb-8">
+                    <div className="w-12 h-12 flex items-center justify-center bg-[#F0F9FF] text-[#0891B2] group-hover:bg-[#0891B2] group-hover:text-white transition-colors">
+                      <Icon size={22} strokeWidth={1.5} />
+                    </div>
+                    <span className="text-[11px] font-semibold text-muted tracking-[0.2em]">
+                      {p.number}
+                    </span>
+                  </div>
+
+                  <h3 className="font-heading text-[22px] font-bold text-ink mb-4 tracking-tight leading-tight">
+                    {p.title}
+                  </h3>
+                  <p className="text-[14px] text-muted leading-relaxed mb-6 flex-grow">
+                    {p.description}
+                  </p>
+
+                  <ul className="space-y-2.5 mb-8">
+                    {p.items.map((it) => (
+                      <li key={it} className="flex items-start gap-3 text-[13px] text-ink/80">
+                        <span className="inline-block w-1 h-1 bg-[#0891B2] rounded-full mt-2 flex-shrink-0" />
+                        <span>{it}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <Link
+                    href={
+                      i === 0 ? "/security" : i === 1 ? "/services" : "/services"
+                    }
+                    className="inline-flex items-center gap-2 text-[13px] font-medium text-[#0891B2] hover:gap-3 transition-all"
+                  >
+                    Learn more <ArrowRight size={13} />
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================
+          WHY ORKKA — differentiator list
+          ============================================================ */}
+      <section className="bg-warm py-24 md:py-32">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+            {/* Left sticky heading */}
+            <div className="lg:col-span-5">
+              <div className="lg:sticky lg:top-24">
+                <div className="flex items-center gap-2 mb-5">
+                  <span className="inline-block w-1.5 h-1.5 bg-[#0891B2]" />
+                  <span className="text-[11px] font-semibold text-ink tracking-[0.25em] uppercase">
+                    Why Orkka
+                  </span>
+                </div>
+                <h2 className="font-heading text-[36px] sm:text-[44px] font-bold tracking-tight text-ink leading-tight mb-5">
+                  Built for
+                  <br />
+                  <span className="text-muted">your constraints.</span>
+                </h2>
+                <p className="text-[15px] text-muted font-light leading-relaxed mb-6">
+                  Most consulting firms aren't built for mid-market speed. Most SaaS vendors aren't built for strategy. We're built for both.
+                </p>
+                <Link
+                  href="/about"
+                  className="inline-flex items-center gap-2 text-[13px] font-medium text-ink border-b border-ink/20 hover:border-ink pb-0.5 transition-colors"
+                >
+                  Meet the team <ArrowRight size={13} />
+                </Link>
+              </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-3">
-              {[
-                { tech: "Kubernetes", sub: "EKS · GKE · AKS" },
-                { tech: "GPU Infrastructure", sub: "A100 · H100 · CUDA" },
-                { tech: "MLOps", sub: "MLflow · Kubeflow · Airflow" },
-                { tech: "LLM Serving", sub: "vLLM · Triton · KServe" },
-                { tech: "AWS", sub: "EKS · SageMaker · ECS" },
-                { tech: "GitOps", sub: "ArgoCD · Flux · Terraform" },
-              ].map((item) => (
-                <div key={item.tech} className="bg-[#f5f5f7] rounded-2xl p-5">
-                  <p className="text-[14px] font-semibold text-[#1d1d1f] mb-1">{item.tech}</p>
-                  <p className="text-[11px] text-[#6e6e73] tracking-wide">{item.sub}</p>
-                </div>
-              ))}
+            {/* Right numbered list */}
+            <div className="lg:col-span-7">
+              <ul className="space-y-0">
+                {differentiators.map((d, i) => (
+                  <li
+                    key={i}
+                    className="py-8 border-b border-gray-200 first:pt-0 last:border-none"
+                  >
+                    <div className="flex gap-6">
+                      <div className="text-[13px] font-semibold text-[#0891B2] tracking-[0.2em] pt-1 w-10 flex-shrink-0">
+                        0{i + 1}
+                      </div>
+                      <div>
+                        <h3 className="font-heading text-[20px] font-bold text-ink mb-2 tracking-tight">
+                          {d.title}
+                        </h3>
+                        <p className="text-[14px] text-muted leading-relaxed">
+                          {d.description}
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Our Commitment */}
-      <section className="bg-[#f5f5f7] py-24 md:py-32 border-t border-black/8">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <div className="mb-14">
-            <p className="text-[13px] font-medium text-[#6e6e73] uppercase tracking-widest mb-4">
-              Our Commitment
-            </p>
-            <h2 className="text-[36px] sm:text-[48px] font-semibold tracking-tight text-[#1d1d1f] leading-tight max-w-xl">
-              What you should expect from us, every time.
+      {/* ============================================================
+          ENGAGEMENT MODELS
+          ============================================================ */}
+      <section className="bg-white py-24 md:py-32">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="max-w-2xl mb-16">
+            <div className="flex items-center gap-2 mb-5">
+              <span className="inline-block w-1.5 h-1.5 bg-[#0891B2]" />
+              <span className="text-[11px] font-semibold text-ink tracking-[0.25em] uppercase">
+                Engagement Models
+              </span>
+            </div>
+            <h2 className="font-heading text-[36px] sm:text-[44px] font-bold tracking-tight text-ink leading-tight mb-4">
+              Work with us
+              <br />
+              <span className="text-muted">the way you need.</span>
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
-            {promise.map((item) => (
-              <div key={item.number} className="border-t border-black/10 pt-8">
-                <p className="text-[11px] font-mono text-[#6e6e73] mb-4 tracking-wider">
-                  {item.number}
-                </p>
-                <h3 className="text-[19px] font-semibold text-[#1d1d1f] mb-3 tracking-tight">
-                  {item.title}
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 border border-gray-200">
+            {engagementModels.map((m, i) => (
+              <div
+                key={i}
+                className={`p-8 lg:p-10 border-gray-200 ${
+                  i % 4 !== 3 ? "md:border-r" : ""
+                } ${
+                  i < 2 ? "border-b md:border-b-0" : ""
+                } ${
+                  i === 1 ? "border-b md:border-b-0" : ""
+                } hover:bg-gray-50 transition-colors`}
+              >
+                <div className="text-[11px] font-semibold text-[#0891B2] tracking-[0.2em] mb-4">
+                  0{i + 1}
+                </div>
+                <h3 className="font-heading text-[18px] font-bold text-ink mb-3 tracking-tight">
+                  {m.title}
                 </h3>
-                <p className="text-[14px] text-[#6e6e73] leading-relaxed">
-                  {item.description}
+                <p className="text-[13px] text-muted leading-relaxed">
+                  {m.desc}
                 </p>
               </div>
             ))}
@@ -255,31 +430,46 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="bg-[#1d1d1f] py-20 md:py-24">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
-            <div>
-              <h2 className="text-[32px] sm:text-[40px] font-semibold tracking-tight text-white leading-tight">
-                Ready to work together?
+      {/* ============================================================
+          CLOSING CTA — dark, premium
+          ============================================================ */}
+      <section className="bg-dark relative overflow-hidden">
+        <div className="bg-orb -top-20 -right-20 w-[400px] h-[400px] opacity-30" />
+
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-24 md:py-32 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-8">
+              <div className="flex items-center gap-2 mb-6">
+                <span className="inline-block w-1.5 h-1.5 bg-[#0891B2]" />
+                <span className="text-[11px] font-semibold text-white/60 tracking-[0.25em] uppercase">
+                  Let's talk
+                </span>
+              </div>
+
+              <h2 className="font-heading text-[36px] sm:text-[48px] lg:text-[56px] font-bold tracking-tight text-white leading-[1.05] mb-6">
+                Ready to secure
+                <br />
+                <span className="text-gradient-accent">your AI?</span>
               </h2>
-              <p className="mt-3 text-[16px] text-white/50 font-light max-w-md">
-                Whether you are building a team, finding your next role, or modernizing your AI infrastructure — we are ready.
+              <p className="text-[16px] text-white/50 font-light leading-relaxed max-w-xl">
+                30-minute discovery call. No pitch, no pressure — just a conversation about where you are and what's in the way.
               </p>
             </div>
-            <div className="flex flex-row gap-3 flex-shrink-0">
+
+            <div className="lg:col-span-4 flex flex-col gap-3">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-[#1d1d1f] text-[14px] font-medium hover:bg-white/90 transition-colors group"
+                className="btn-white-dark inline-flex items-center justify-between gap-3 px-7 py-5 text-[14px] font-medium group"
               >
-                Hire Talent
-                <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
+                Book a discovery call
+                <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
               </Link>
               <Link
-                href="/contact?type=candidate"
-                className="inline-flex items-center px-6 py-3 rounded-full border border-white/20 text-white text-[14px] font-medium hover:border-white/40 transition-all"
+                href="/security"
+                className="btn-ghost-dark inline-flex items-center justify-between gap-3 px-7 py-5 text-[14px] font-medium group"
               >
-                Find a Role
+                Read our research
+                <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
               </Link>
             </div>
           </div>
