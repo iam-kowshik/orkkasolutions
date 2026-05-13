@@ -187,7 +187,7 @@ export default function HomePage() {
 
               {/* Subhead */}
               <p className="text-[17px] text-white/50 leading-relaxed max-w-xl font-light mb-10">
-                Orkka is the specialist AI security and platform engineering practice for healthcare, finance, and government organizations. We protect, build, and staff the systems that matter — without the Big 4 price tag.
+                Orkka is the specialist AI security and platform engineering practice for enterprises operating in regulated and high-stakes environments. We protect, build, and staff the systems that matter — without the Big 4 price tag.
               </p>
 
               {/* Industry tags */}
@@ -199,6 +199,12 @@ export default function HomePage() {
                 <span>Government</span>
                 <span className="w-1 h-1 bg-white/20 rounded-full" />
                 <span>Enterprise SaaS</span>
+                <span className="w-1 h-1 bg-white/20 rounded-full" />
+                <span>E-commerce &amp; Retail</span>
+                <span className="w-1 h-1 bg-white/20 rounded-full" />
+                <span>Insurance</span>
+                <span className="w-1 h-1 bg-white/20 rounded-full" />
+                <span>Pharma &amp; Life Sciences</span>
               </div>
 
               {/* CTAs */}
