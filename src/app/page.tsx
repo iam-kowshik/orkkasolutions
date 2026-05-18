@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Shield, Cloud, Users, Check, Minus } from "lucide-react";
+import { ArrowRight, Shield, Cloud, Users, Check, Minus, Github, Star } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
 /*  HERO VISUAL — minimal, premium, santifer-inspired                  */
@@ -180,7 +180,7 @@ export default function HomePage() {
 
               {/* Subhead */}
               <p className="text-[17px] text-white/50 leading-relaxed max-w-xl font-light mb-10">
-                Orkka secures the agentic layer of your AI stack — MCP servers, autonomous agents, and LLM-mediated workflows. Red-team your agents, prepare for audits, or get a fractional AI CISO. Built by 13-year platform & security operators who&apos;ve run production at $7B scale.
+                Orkka secures the agentic layer of your AI stack — MCP servers, autonomous agents, and LLM-mediated workflows. Red-team your agents, prepare for audits, or get a fractional AI CISO — while we build the first MCP-native security gateway in the open.
               </p>
 
               {/* Industry tags */}
@@ -299,6 +299,113 @@ export default function HomePage() {
             })}
           </div>
         </div>
+      </section>
+
+      {/* ============================================================
+          PRODUCT — Orkka Gateway (building in public)
+          ============================================================ */}
+      <section className="bg-dark relative overflow-hidden py-24 md:py-32">
+        {/* Ambient orbs */}
+        <div className="bg-orb -top-32 -right-32 w-[500px] h-[500px]" />
+        <div className="bg-orb -bottom-32 -left-32 w-[400px] h-[400px]" />
+
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+            {/* Left copy */}
+            <div className="lg:col-span-7">
+              {/* Eyebrow */}
+              <div className="flex items-center gap-2 mb-6">
+                <span className="inline-block w-1.5 h-1.5 bg-[#0891B2]" />
+                <span className="text-[11px] font-semibold text-white/60 tracking-[0.25em] uppercase">
+                  Product · Building in Public
+                </span>
+              </div>
+
+              {/* Headline */}
+              <h2 className="font-heading text-[36px] sm:text-[44px] lg:text-[52px] font-bold tracking-tight text-white leading-[1.1] mb-6">
+                Orkka Gateway
+              </h2>
+
+              {/* Lede */}
+              <p className="text-[17px] text-white/60 leading-relaxed max-w-2xl font-light mb-8">
+                The first MCP-native security gateway. Sits between your AI agents and your tools — applying authorization, audit, prompt injection defense, and compliance controls at the protocol layer.
+              </p>
+
+              {/* Feature list */}
+              <ul className="space-y-3 mb-10 max-w-2xl">
+                {[
+                  "Tool authorization per-agent, per-tenant — scope what each agent can call",
+                  "Prompt injection detection at the tool-call layer, not just the chat layer",
+                  "Audit logs ready for SOC 2 / ISO 27001 / DPDP / NIST AI RMF / EU AI Act",
+                  "Multi-tenant isolation for shared agent infrastructure",
+                  "Drop-in proxy — no SDK changes required in your agent code",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-[14px] text-white/70">
+                    <span className="inline-block w-1 h-1 bg-[#0891B2] rounded-full mt-2 flex-shrink-0" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+
+              {/* CTAs */}
+              <div className="flex flex-col sm:flex-row gap-3">
+                <a
+                  href="https://github.com/iam-kowshik/orkka-gateway"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-white-dark inline-flex items-center justify-center gap-2 px-7 py-4 text-[14px] font-medium group"
+                >
+                  <Github size={16} />
+                  Star on GitHub
+                </a>
+                <Link
+                  href="/contact"
+                  className="btn-ghost-dark inline-flex items-center justify-center gap-2 px-7 py-4 text-[14px] font-medium"
+                >
+                  Request early access
+                  <ArrowRight size={14} />
+                </Link>
+              </div>
+
+              {/* Status line */}
+              <p className="text-[12px] text-white/40 mt-8 tracking-wide">
+                <Star size={11} className="inline mb-0.5 mr-1.5" />
+                Currently scaffolding · MIT licensed · Coming Q3 2026
+              </p>
+            </div>
+
+            {/* Right architecture sketch */}
+            <div className="lg:col-span-5">
+              <div className="rounded-lg border border-white/10 bg-white/[0.02] p-6 font-mono text-[11px] text-white/60 leading-relaxed">
+                <div className="text-white/40 mb-3 text-[10px] tracking-wider uppercase">Architecture</div>
+                <pre className="whitespace-pre overflow-x-auto">{`  ┌────────────────────────┐
+  │  LLM Client            │
+  │  (Claude, GPT, Cursor) │
+  └───────────┬────────────┘
+              │ MCP request
+              ▼
+  ┌────────────────────────┐
+  │  Orkka Gateway         │
+  │  ─────────────────     │
+  │  • Authz policy        │
+  │  • Prompt-inj defense  │
+  │  • PII/secret filter   │
+  │  • Audit log           │
+  │  • Rate / cost limits  │
+  └───────────┬────────────┘
+              │ proxied
+              ▼
+  ┌────────────────────────┐
+  │  Your MCP Servers      │
+  │  (DB · APIs · Tools)   │
+  └────────────────────────┘`}</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom separator */}
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-white/5" />
       </section>
 
       {/* ============================================================
