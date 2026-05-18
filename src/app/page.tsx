@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Shield, Cloud, Users, Check, Minus, Github, Star } from "lucide-react";
+import { ArrowRight, Shield, Cloud, Users, Check, Minus } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
 /*  HERO VISUAL — minimal, premium, santifer-inspired                  */
@@ -180,7 +180,7 @@ export default function HomePage() {
 
               {/* Subhead */}
               <p className="text-[17px] text-white/50 leading-relaxed max-w-xl font-light mb-10">
-                Orkka secures the agentic layer of your AI stack — MCP servers, autonomous agents, and LLM-mediated workflows. Red-team your agents, prepare for audits, or get a fractional AI CISO — while we build the first MCP-native security gateway in the open.
+                Orkka secures the agentic layer of your AI stack — MCP servers, autonomous agents, and LLM-mediated workflows. Red-team your agents, prepare for audits, or get a fractional AI CISO — while we build the first MCP-native security gateway for enterprise.
               </p>
 
               {/* Industry tags */}
@@ -317,7 +317,7 @@ export default function HomePage() {
               <div className="flex items-center gap-2 mb-6">
                 <span className="inline-block w-1.5 h-1.5 bg-[#0891B2]" />
                 <span className="text-[11px] font-semibold text-white/60 tracking-[0.25em] uppercase">
-                  Product · Building in Public
+                  Product · Coming Q3 2026 · Early Access
                 </span>
               </div>
 
@@ -349,28 +349,24 @@ export default function HomePage() {
 
               {/* CTAs */}
               <div className="flex flex-col sm:flex-row gap-3">
-                <a
-                  href="https://github.com/iam-kowshik/orkka-gateway"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href="/contact"
                   className="btn-white-dark inline-flex items-center justify-center gap-2 px-7 py-4 text-[14px] font-medium group"
                 >
-                  <Github size={16} />
-                  Star on GitHub
-                </a>
+                  Request early access
+                  <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
+                </Link>
                 <Link
                   href="/contact"
                   className="btn-ghost-dark inline-flex items-center justify-center gap-2 px-7 py-4 text-[14px] font-medium"
                 >
-                  Request early access
-                  <ArrowRight size={14} />
+                  Schedule a demo
                 </Link>
               </div>
 
               {/* Status line */}
               <p className="text-[12px] text-white/40 mt-8 tracking-wide">
-                <Star size={11} className="inline mb-0.5 mr-1.5" />
-                Currently scaffolding · MIT licensed · Coming Q3 2026
+                In active development · Limited design-partner spots open
               </p>
             </div>
 
