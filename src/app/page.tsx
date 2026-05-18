@@ -91,26 +91,26 @@ const pillars = [
   {
     icon: Shield,
     number: "01",
-    title: "AI Security & Governance",
+    title: "AI Agent Red-Team",
     description:
-      "End-to-end security for AI-era enterprises. From cloud posture to AI governance frameworks — NIST AI RMF, EU AI Act, ISO 42001.",
-    items: ["Cloud Security & CSPM", "SOC Operations & SIEM/SOAR", "IAM & Zero Trust", "AI Governance & Model Security", "Compliance Automation"],
-  },
-  {
-    icon: Cloud,
-    number: "02",
-    title: "Cloud Infrastructure & Platform",
-    description:
-      "Production-grade infrastructure built for scale. Kubernetes-native CI/CD, GitOps workflows, multi-cloud architectures.",
-    items: ["Multi-Cloud Kubernetes", "GitOps & CI/CD Automation", "Platform Engineering", "GPU Infrastructure for AI/ML", "Observability & SRE"],
+      "We test your AI agents the way an attacker would. Prompt injection, jailbreaks, tool misuse, multi-step exploits, data exfiltration. Delivered with a remediation playbook your engineers can ship.",
+    items: ["Prompt injection & jailbreak testing", "MCP tool authorization audit", "Agent-driven data exfiltration", "Multi-step exploit chains", "Remediation playbook"],
   },
   {
     icon: Users,
-    number: "03",
-    title: "Technology Staffing",
+    number: "02",
+    title: "Fractional AI CISO",
     description:
-      "Pre-vetted senior engineers. Contract, contract-to-hire, direct hire, or statement of work — matched to your exact needs.",
-    items: ["Contract (3–12 months)", "Contract-to-Hire", "Direct Hire", "Statement of Work", "Fractional Leadership"],
+      "Senior AI security leadership without the $300K full-time hire. Own AI risk, brief your board, manage the audit, prepare for the next prompt-injection incident — on a monthly retainer.",
+    items: ["AI risk register & reporting", "Audit prep (SOC 2 / ISO 27001 / DPDP)", "AI policy & incident response", "Board & investor briefings", "Vendor & tool selection"],
+  },
+  {
+    icon: Cloud,
+    number: "03",
+    title: "AI Compliance Engineering",
+    description:
+      "We make your AI workloads auditable. Continuous evidence collection, control automation, AI-specific controls auditors haven't written playbooks for yet — NIST AI RMF, EU AI Act, ISO 42001, India DPDP.",
+    items: ["Prompt & output retention", "Tool-call audit logs", "Model lineage tracking", "Auditor-ready reports", "Multi-framework mapping"],
   },
 ];
 
@@ -145,10 +145,10 @@ const engagementModels = [
 ];
 
 const stats = [
-  { value: "7",  label: "Security layers covered" },
-  { value: "50+",label: "AWS services managed" },
-  { value: "4",  label: "Compliance frameworks" },
-  { value: "40%",label: "Cost vs full-time hire" },
+  { value: "13yr",label: "Platform & security ops experience" },
+  { value: "6",   label: "Peer-reviewed papers · ~190 citations" },
+  { value: "1",   label: "Patent · cloud-native observability" },
+  { value: "4",   label: "Compliance frameworks · SOC 2 / ISO / DPDP / NIST AI RMF" },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -174,20 +174,20 @@ export default function HomePage() {
               <div className="flex items-center gap-2 mb-8">
                 <span className="inline-block w-1.5 h-1.5 bg-[#0891B2]" />
                 <span className="text-[11px] font-semibold text-white/60 tracking-[0.25em] uppercase">
-                  AI Security Practice
+                  AI Agent Security · Advisory + Gateway
                 </span>
               </div>
 
               {/* Headline */}
               <h1 className="font-heading text-[44px] sm:text-[56px] lg:text-[64px] font-bold leading-[1.05] tracking-tight text-white mb-6">
-                Secure AI deployment
+                Secure your AI agents
                 <br />
-                <span className="text-gradient-accent">for regulated industries.</span>
+                <span className="text-gradient-accent">before they ship to production.</span>
               </h1>
 
               {/* Subhead */}
               <p className="text-[17px] text-white/50 leading-relaxed max-w-xl font-light mb-10">
-                Orkka is the specialist AI security and platform engineering practice for enterprises operating in regulated and high-stakes environments. We protect, build, and staff the systems that matter — without the Big 4 price tag.
+                Orkka secures the agentic layer of your AI stack — MCP servers, autonomous agents, and LLM-mediated workflows. Red-team your agents, prepare for audits, or get a fractional AI CISO. Built by 13-year platform & security operators who&apos;ve run production at $7B scale.
               </p>
 
               {/* Industry tags */}
@@ -200,11 +200,11 @@ export default function HomePage() {
                 <span className="w-1 h-1 bg-white/20 rounded-full" />
                 <span>Enterprise SaaS</span>
                 <span className="w-1 h-1 bg-white/20 rounded-full" />
-                <span>E-commerce &amp; Retail</span>
+                <span>E-commerce & Retail</span>
                 <span className="w-1 h-1 bg-white/20 rounded-full" />
                 <span>Insurance</span>
                 <span className="w-1 h-1 bg-white/20 rounded-full" />
-                <span>Pharma &amp; Life Sciences</span>
+                <span>Pharma & Life Sciences</span>
               </div>
 
               {/* CTAs */}
@@ -213,14 +213,14 @@ export default function HomePage() {
                   href="/contact"
                   className="btn-white-dark inline-flex items-center justify-center gap-2 px-7 py-4 text-[14px] font-medium group"
                 >
-                  Book a discovery call
+                  Book a free 30-min AI agent review
                   <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
                 </Link>
                 <Link
                   href="/services"
                   className="btn-ghost-dark inline-flex items-center justify-center px-7 py-4 text-[14px] font-medium"
                 >
-                  Explore services
+                  See our 3 service offers
                 </Link>
               </div>
             </div>
