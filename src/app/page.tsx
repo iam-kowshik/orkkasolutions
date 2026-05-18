@@ -144,13 +144,6 @@ const engagementModels = [
   { title: "Statement of Work",desc: "Outcome-based. We own the deliverables." },
 ];
 
-const stats = [
-  { value: "13yr",label: "Platform & security ops experience" },
-  { value: "6",   label: "Peer-reviewed papers · ~190 citations" },
-  { value: "1",   label: "Patent · cloud-native observability" },
-  { value: "4",   label: "Compliance frameworks · SOC 2 / ISO / DPDP / NIST AI RMF" },
-];
-
 /* ------------------------------------------------------------------ */
 /*  PAGE                                                                */
 /* ------------------------------------------------------------------ */
@@ -234,27 +227,6 @@ export default function HomePage() {
 
         {/* Bottom separator */}
         <div className="absolute bottom-0 left-0 right-0 h-px bg-white/5" />
-      </section>
-
-      {/* ============================================================
-          STAT STRIP — minimal, typographic
-          ============================================================ */}
-      <section className="bg-white border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((s, i) => (
-              <div key={i} className="flex flex-col">
-                <div className="flex items-baseline gap-3 mb-2">
-                  <span className="w-1 h-1 bg-[#0891B2] rounded-full" />
-                  <div className="text-[48px] md:text-[56px] font-bold tracking-tight text-ink leading-none">
-                    {s.value}
-                  </div>
-                </div>
-                <div className="text-[12px] text-muted leading-relaxed pl-4">{s.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
       </section>
 
       {/* ============================================================
